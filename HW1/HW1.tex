@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+%%Let's you change margins
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+%%Math symbols, proof environments
+\usepackage{amsmath,amsthm,amssymb}
+\newcommand*{\twoheadrightarrowtail}{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
+%%Make links, "colorlinks" makes it so the links show up in a different color from the text
+\usepackage[colorlinks]{hyperref}
+
+%%Use this package for matrices
+\usepackage{array}
+
+%%Defining commands for common sets
+\newcommand{\R}{\mathbb{R}} %Real numbers
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Orb}{Orb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}} %Rational numbers
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newtheorem{problem}{Problem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+
+\title{Math 110BH Homework 2} 
+
+\author{George Luan}
+
+\date{January 23, 2024} %You can also manually type in a date
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 2.1.2}
+\begin{proof}
+    For all $s\in G$ and all $x \in X$, $e_{x}$ is an eigenvector of $\rho(s)$ if and only if $\rho(s)e_{x} = e_{x}$, which is equivalent to $s*x = x$. Thus, $\chi_{X}(s) = tr(\rho_s)$ is the sum of the eigenvalues of $\rho_{s}$ counted with geometric multiplicity (the total number of eigenvectors among $(e_{x})_{x \in X}$), so $\chi_{X}(s) = |G(s)|$ as desired.  
+\end{proof}
+
+\section*{Problem 2.1.3}
+\begin{proof}
+(Uniqueness) Suppose $\rho', \rho^\#: G \to GL(V')$ are two linear representations such that $\langle \rho_s x, \rho'_s x'\rangle = \langle x, \rho_s^{t}\rho^\#_s x'\rangle = \langle x, x' \rangle \ \text{for all } s \in G, x \in V, x' \in V'$.
+Then for all $s \in G, x \in V, x' \in V'$, $\langle x, \rho_s^{t}\rho^{\#}_s x'\rangle = \langle x, \rho_s^{t}\rho'_s x'\rangle = \langle x, x' \rangle \ \text{for all } s \in G, x \in V, x' \in V'$, so $\rho_s^{t}\rho'_s = \rho_s^{t}\rho^\#_s = Id_{V'}$. As a result $\rho^\# = \rho'_s = (\rho_s^{t})^{-1} = (\rho_s^{-1})^{t} = (\rho_{s^{-1}})^{t}$ for all $s \in G$, and $\rho' = \rho^\#$ as desired.
+
+(Existence) Define $\rho'$ by $\rho'(s) := \rho(s^{-1})^t$ for all $s \in G$.
+\end{proof}
+
+\end{document}
