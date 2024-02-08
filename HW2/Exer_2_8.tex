@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+%%Let's you change margins
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+%%Math symbols, proof environments
+\usepackage{amsmath,amsthm,amssymb}
+\newcommand*{\twoheadrightarrowtail}{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
+%%Make links, "colorlinks" makes it so the links show up in a different color from the text
+\usepackage[colorlinks]{hyperref}
+
+%%Use this package for matrices
+\usepackage{array}
+
+%%Defining commands for common sets
+\newcommand{\R}{\mathbb{R}} %Real numbers
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Orb}{Orb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}} %Rational numbers
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newtheorem{problem}{Problem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{definition}{Definition}[section]
+
+\title{Exercise 2.8} 
+
+\author{George Luan}
+
+\date{February 8, 2024} %You can also manually type in a date
+
+\begin{document}
+
+\maketitle
+
+\noindent
+Let $\rho: G \to GL(V)$ be a linear representation of $G$, a finite group. Let $\chi_1, \dots, \chi_h$ be all possible distinct characters of irreducible represntations of $G$. Note that the number of isomorphism classes of irreducible representations of a finite group $G$ over the complex numbers is equal to the number of conjugacy classes of $G$, which is finite. For each $k = 1, \dots, h$, pick $W_k$ be an irreducible representation of $G$ with character $\chi_{k}$ and denote its degree by $n_k$. Let $V = U_1 \oplus \cdots \oplus U_m$ be a decomposition of $V$ into irreducible representations. For $k = 1, \dots, h$, denote by $V_k$ the direct sum of those of the $U_1, \dots, U_m$ which are isomorphic to $W_k$.
+
+\medskip
+\noindent
+Let $H_k$ be the vector space of linear mappings $h: W_k \to V$ such that $\rho_s h = h\rho_s$ for all $s \in G$. Each $h \in H_k$ maps $W_k$ to $V_k$.
+\begin{prop} The dimension of $H_k$ is equal to the number of times that $W_k$ appears in $V$, i.e., to $\dim V_k / \dim W_k$.
+\end{prop}
+\begin{proof}
+    Note that in this case, $\rho_s h = h\rho_s$ for all $s \in G$ boils down to $\rho_s|V_k h = h\rho_s|V_k$ for all $s \in G$. Suppose $V_k = W_k$. Then by Shur's Lemma, any such $h$ must be a homothety, so $\dim H_k = 1 = \dim V_k / \dim W_k$.
+    
+    For the more general case, we can decompose $V_k = U_{k_1} \oplus \cdots \oplus U_{k_n}$ and apply Schur's Lemma on each $U_k$. Then $\dim H_k = n$ and $\dim V_k = \dim U_{k_1} + \cdots + \dim U_{k_n} = n\dim W_k$, so the claim follows.  
+\end{proof}
+
+\begin{prop} Let $G$ act on $H_k \otimes W_k$ through the tensor product of the trivial representation of $G$ on $H_k$ and the given representation on $W_k$. Then the map
+    $$ F: \ H_k \otimes W_k \to V_k $$
+defined by the formula
+    $$ F\left( \sum h_\alpha \cdot w_\alpha \right) = \sum h_\alpha(w_\alpha) $$
+is an isomorphism.
+\end{prop}
+\begin{proof}
+    Since $\dim (H_k \otimes W_k) = dim (H_k)\dim(W_k) = \dim V_k$, it suffices to show that $F$ is injective. Suppose $V_k = W_k$. Then $H_k \otimes W_k = span(h \cdot w)$ for some $w \cdot \alpha \neq 0_{H_k} \cdot 0_{W_k}$. By Shur's Lemma, $h$ is a non-zero homothety, so if $F(c(h\cdot w)) = ch(w) = 0$ for some $c \in \mathbb{C}$, $c = 0$, proving $F$ injective.
+    
+    For general cases, we can decompose $V$ into irreducible subrepresentations and apply the same argument.
+\end{proof}
+
+\begin{prop} Let $(h_1, \dots, h_k)$ be a basis for $H_k$ and form the direct sum $W_k \times \cdots \times W_k$ of $k$ copies of $W_k$. The system $(h_1, \dots, h_k)$ clearly defines a linear mapping $h$ of $W_k \times \cdots \times W_k$ into $V_k$. Show that this is an isomorphism.
+\end{prop}
+\begin{proof}
+    The linear map $h$ is defined by $h(w_1, \dots, w_k) := h_1(w_1) + \cdots h_k(w_k)$. This is surjective by Part B.
+\end{proof}
+
+\end{document}
